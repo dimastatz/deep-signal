@@ -8,7 +8,7 @@ Presenting Linga, a revolutionary SAAS that harnesses the power of <a href="http
 </br>
 </br>
 <kbd>
-<img src=".linga.png" width="256px"> 
+<img src="./deep-signal-removebg-preview.png" width="256px"> 
 </kbd>
 </div>
 
