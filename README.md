@@ -18,7 +18,7 @@ We are thrilled to announce the release of DeepSignal—an innovative open-sourc
 
 ## Key Features:
 
-- Real-Time Multimedia Processing: DeepSignal harnesses the power of Apache Spark to provide unparalleled real-time processing capabilities for both video and audio streams, ensuring responsiveness at scale.
+- Real-Time Multimedia Processing: DeepSignal harnesses the power of Apache Spark to provide a real-time processing capabilities for both video and audio streams, ensuring responsiveness at scale.
 
 - Versatility: Tailored for a multitude of applications, DeepSignal excels in various domains such as speech-to-text, text-to-speech, and real-time video call analytics.
 
