@@ -1,3 +1,3 @@
-object Main extends App {
+object Boot {
   println("Hello, World!")
 }

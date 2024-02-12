@@ -1,7 +1,7 @@
 import org.scalatest.funsuite.AnyFunSuite
 
 
-class TestMain extends AnyFunSuite {
+class TestBoot extends AnyFunSuite {
     test("testSessionization") {
         assert(1 == 1)
     }

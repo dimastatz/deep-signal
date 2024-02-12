@@ -14,8 +14,18 @@ scalaVersion := "2.13.12"
 // It's possible to define many kinds of settings, such as:
 
 name := "deep-signal"
-organization := "com.apache.deep-signal"
+organization := "org.apache"
 version := "1.0"
+
+
+coverageFailOnMinimum := true
+coverageExcludedFiles := ".*Boot.*"
+coverageMinimumStmtTotal := 90
+coverageMinimumBranchTotal := 90
+coverageMinimumStmtPerPackage := 90
+coverageMinimumBranchPerPackage := 90
+coverageMinimumStmtPerFile := 90
+coverageMinimumBranchPerFile := 80
 
 // Note, it's not required for you to define these three settings. These are
 // mostly only necessary if you intend to publish your library's binaries on a
@@ -76,3 +86,10 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.15" % "test"
 
 // To learn more about multi-project builds, head over to the official sbt
 // documentation at http://www.scala-sbt.org/documentation.html
+
+addCommandAlias(
+  "testCoverage",
+  "; clean; coverage; test; coverageReport; coverageOff"
+)
+
+logLevel := Level.Info
