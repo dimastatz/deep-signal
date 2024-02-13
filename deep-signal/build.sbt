@@ -44,6 +44,10 @@ coverageMinimumBranchPerFile := 90
 
 libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.3.0"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.15" % "test"
+libraryDependencies += "ai.djl" % "api" % "0.21.0"
+libraryDependencies += "ai.djl.pytorch" % "pytorch-engine" % "0.25.0"
+libraryDependencies += "org.slf4j" % "slf4j-simple" % "1.7.32" % Test
+
 
 // Here, `libraryDependencies` is a set of dependencies, and by using `+=`,
 // we're adding the scala-parser-combinators dependency to the set of dependencies
