@@ -18,6 +18,7 @@ organization := "org.apache"
 version := "1.0"
 
 
+// Code coverage enforcement
 coverageFailOnMinimum := true
 coverageExcludedFiles := ".*Boot.*"
 coverageMinimumStmtTotal := 90
@@ -25,7 +26,13 @@ coverageMinimumBranchTotal := 90
 coverageMinimumStmtPerPackage := 90
 coverageMinimumBranchPerPackage := 90
 coverageMinimumStmtPerFile := 90
-coverageMinimumBranchPerFile := 80
+coverageMinimumBranchPerFile := 90
+
+// Scala style
+//compileScalastyle := (Compile / scalastyle).toTask("").value
+//testScalastyle := (Test / scalastyle).toTask("").value
+//ThisBuild / scalafmtOnCompile := true
+
 
 // Note, it's not required for you to define these three settings. These are
 // mostly only necessary if you intend to publish your library's binaries on a
