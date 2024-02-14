@@ -3,6 +3,7 @@ package org.apache.deepsignal.whisper
 import ai.djl.Model
 import scala.util.Try
 import java.nio.file.Paths
+import ai.djl.translate.Translator
 
 
 object MicroBatch {
@@ -13,8 +14,12 @@ object MicroBatch {
     }
 
 
-    def process(payload: Array[Byte]): String = {
-        payload.length.toString
+    def process(payload: Array[Byte], model: Model): Try[String] = Try {
+        val translator = getTranslator()
+        val predictor = model.newPredictor(translator)
+        predictor.predict(payload)
     }
+
+    def getTranslator(): Translator[Array[Byte], String] = ???
 }
 
