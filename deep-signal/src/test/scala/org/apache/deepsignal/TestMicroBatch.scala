@@ -9,4 +9,9 @@ class TestMicroBatch extends AnyFunSuite{
         val context = "testSimpleCase".getBytes()
         assert(MicroBatch.process(context) == context.length.toString)
     }
+
+    test("testLoadModel") {
+        val tryLoadModel = MicroBatch.loadModel("", "")
+        assert(tryLoadModel.isFailure == true)
+    }
 }
