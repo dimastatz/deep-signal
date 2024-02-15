@@ -14,6 +14,6 @@ class TestMicroBatch extends AnyFunSuite{
 
     test("testLoadModel") {
         val tryLoadModel = MicroBatch.loadModel("", "")
-        assert(tryLoadModel.isFailure == true)
+        assert(tryLoadModel.isFailure)
     }
 }
