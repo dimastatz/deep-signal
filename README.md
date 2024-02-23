@@ -1,6 +1,6 @@
 <div align="center">
 <h1 align="center"> DeepSignal </h1> 
-<h3>An Open-Source Framework for Real-Time Multimedia Processing on Apache Spark</br></h3>
+<h3>An Open-Source Framework for Multimedia Processing on Apache Spark</br></h3>
 <img src="https://img.shields.io/badge/Progress-1%25-red"> <img src="https://img.shields.io/badge/Feedback-Welcome-green">
 </br>
 </br>
@@ -14,7 +14,7 @@
 With the pervasive adoption of cameras and microphones, coupled with the surge in remote communication via video and audio calls, the volume of multimedia data is rapidly expanding. This trend underscores the critical importance of video and audio analysis across diverse sectors, including healthcare, finance, and education. Recognizing this need, the Deep Signal framework emerges as a solution, aiming to provide centralized, real-time analysis of multimedia data. Built on Apache Spark's robust infrastructure, Deep Signal facilitates scalable processing and analysis, ensuring seamless integration across various programming languages and offering developers accessible tools for extracting actionable insights from multimedia sources, ranging from sentiment analysis in customer service calls to content classification in video streams.
 <div align="center">
 <img src="./images/RDD.png"> 
-<div>Media RDD for DeepSignal</div>
+<div>Media<a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">RDD</a> for DeepSignal</div>
 </div>
 
 ## Key Features:
