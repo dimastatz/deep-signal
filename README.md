@@ -12,6 +12,10 @@
 
 # Overview
 With the pervasive adoption of cameras and microphones, coupled with the surge in remote communication via video and audio calls, the volume of multimedia data is rapidly expanding. This trend underscores the critical importance of video and audio analysis across diverse sectors, including healthcare, finance, and education. Recognizing this need, the Deep Signal framework emerges as a solution, aiming to provide centralized, real-time analysis of multimedia data. Built on Apache Spark's robust infrastructure, Deep Signal facilitates scalable processing and analysis, ensuring seamless integration across various programming languages and offering developers accessible tools for extracting actionable insights from multimedia sources, ranging from sentiment analysis in customer service calls to content classification in video streams.
+<div align="center">
+<img src="./images/RDD.png"> 
+<h3>Media RDD</br></h3>
+</div>
 
 ## Key Features:
 
