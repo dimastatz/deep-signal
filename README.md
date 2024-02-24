@@ -17,6 +17,11 @@ With the pervasive adoption of cameras and microphones, coupled with the surge i
 <div>Media <a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">RDD</a> for DeepSignal Batch</div>
 </div>
 
+<div align="center">
+<img src="./images/Dstream.png"> 
+<div>Media <a href="https://spark.apache.org/docs/latest/streaming-programming-guide.html">DStream</a> for DeepSignal Streaming</div>
+</div>
+
 ## Key Features:
 
 - Real-Time Multimedia Processing: DeepSignal harnesses the power of Apache Spark to provide a real-time processing capabilities for both video and audio streams, ensuring responsiveness at scale.
