@@ -5,7 +5,7 @@
 </br>
 </br>
 <kbd>
-<img src="./images/deep-signal-removebg-preview.png" width="256px"> 
+<img src="/docs/images/deep-signal.png" width="256px"> 
 </kbd>
 </div>
 
@@ -13,12 +13,12 @@
 # Overview
 With the pervasive adoption of cameras and microphones, coupled with the surge in remote communication via video and audio calls, the volume of multimedia data is rapidly expanding. This trend underscores the critical importance of video and audio analysis across diverse sectors, including healthcare, finance, and education. Recognizing this need, the Deep Signal framework emerges as a solution, aiming to provide centralized, real-time analysis of multimedia data. Built on Apache Spark's robust infrastructure, Deep Signal facilitates scalable processing and analysis, ensuring seamless integration across various programming languages and offering developers accessible tools for extracting actionable insights from multimedia sources, ranging from sentiment analysis in customer service calls to content classification in video streams.
 <div align="center">
-<img src="./images/RDD.png"> 
+<img src="/docs/images/RDD.png"> 
 <div>Media <a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">RDD</a> for DeepSignal Batch</div>
 </div>
 
 <div align="center">
-<img src="./images/Dstream.png"> 
+<img src="/docs/images/Dstream.png"> 
 <div>Media <a href="https://spark.apache.org/docs/latest/streaming-programming-guide.html">DStream</a> for DeepSignal Streaming</div>
 </div>
 
