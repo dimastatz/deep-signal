@@ -59,24 +59,19 @@ MediaDStream is an extension of Apache Spark's DStream designed for handling med
 - Event Detection: Detecting and identifying specific events or anomalies within the video, such as accidents, crowd gatherings, or abnormal behaviors.
 - Content Summarization: Generating summaries or keyframes of the video to provide a concise representation of its content.
 
-
-## Use Cases:
-Deep Signal shines in a wide array of applications including:
-
-- Speech to Text: Enable real-time conversion of spoken language into written text with high accuracy.
-
-- Text to Speech: Transform written text into natural-sounding, intelligible speech in real-time.
-
-- Video Call Analytics: Uncover valuable insights from video calls, including sentiment analysis, object recognition, and more.
-
-- Face Recognition: Identify and analyze faces in real-time, facilitating applications such as access control, security monitoring, and personalized user experiences.
-
-- Object Detection: Detect and track objects within video streams, ideal for applications in surveillance, retail analytics, and automated video content analysis.
-
-- Gesture Recognition: Recognize and interpret gestures in live video, enhancing user interaction and engagement in applications like virtual classrooms, gaming, and augmented reality.
-
-
 # How-To
+```scala
+// create Spark Context
+val sc = new SparkContext(...)
+
+// transcribe audio files
+val audioRDD: MediaRDD = sc.mediaFile("path_to_audio_files")
+val transcription = audioRDD.collectTranscription()
+
+//
+val videoRDD: MediaRDD = sc.mediaFile("path_to_video_files")
+val activity = videoRDD.collectObjects()
+```
 [TBD]()
 
 
