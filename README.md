@@ -21,12 +21,11 @@ With the pervasive adoption of cameras and microphones, coupled with the surge i
 
 
 ## Deep Signal Concepts
-Deep signal introduces two new objects to Apache Spark - MediaRDD for Batch processing and MediaDStream for Streaming. MediaRDD is an extension of Apache Spark's RDD designed for handling distributed media files efficiently. It streamlines operations like speech-to-text conversion, audio file translation, speaker diarization, and mode analysis within the Spark framework. This specialized support simplifies multimedia processing tasks for developers.
+Deep Signal introduces two new objects to Apache Spark - MediaRDD for Batch processing and MediaDStream for Streaming. MediaRDD is an extension of Apache Spark's RDD, designed for handling distributed media files efficiently. It streamlines operations like speech-to-text conversion, audio file translation, speaker diarization, and more within the Spark framework. This specialized support simplifies multimedia processing tasks for developers.
 <div align="center">
 <img src="/docs/images/RDD.png"> 
 <div>Media <a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">RDD</a> for DeepSignal Batch</div>
 </div><br/>
-
 MediaDStream is an extension of Apache Spark's DStream designed for handling media streams like video and audio. It simplifies the real-time processing and analysis of continuous media data within Spark's streaming framework. With MediaDStream, developers can easily ingest, process, and analyze streaming media content in real-time. It offers specialized functionalities for tasks such as object detection, speech recognition, and sentiment analysis as data flows in. MediaDStream integrates seamlessly with other components of the Spark ecosystem, enabling the development of end-to-end multimedia processing pipelines.
 <div align="center">
 <img src="/docs/images/Dstream.png"> 
