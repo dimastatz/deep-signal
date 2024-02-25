@@ -10,10 +10,9 @@
 </div>
 
 
-## Background
+## Overview
 With the pervasive adoption of cameras and microphones, coupled with the surge in remote communication via video and audio calls, the volume of multimedia data is rapidly expanding. This trend underscores the critical importance of video and audio analysis across diverse sectors, including healthcare, finance, and education. Recognizing this need, the Deep Signal framework emerges as a solution, aiming to provide centralized, real-time analysis of multimedia data. 
 
-## Deep Signal on Apache Spark
 - Deep Signal, leveraging [Apache Spark's](https://spark.apache.org/) robust infrastructure, simplifies scalable processing and analysis. It ensures smooth integration across different programming languages and provides accessible tools for developers to extract valuable insights from multimedia sources. These tasks range from analyzing sentiments in customer service calls to categorizing content in video streams.
 
 - While Apache Spark excels in handling structured data through Spark SQL, DataFrames, and Datasets, its support for unstructured data, such as text, is also strong with RDDs. However, when dealing with media data (binary), developers are left to navigate on their own. They lack support for essential operations like speech-to-text conversion, translation, speaker diarization, and object detection.
@@ -21,7 +20,7 @@ With the pervasive adoption of cameras and microphones, coupled with the surge i
 - To bridge this gap, Deep Signal introduces new interfaces, namely MediaRDD and MediaDStream. These interfaces provide a user-friendly approach for working with distributed collections of media data, enabling ease of use, scalability, and advanced functionality when processing video and audio files.
 
 
-## Deep Signal Batch
+## Deep Signal Flavors
 <div align="center">
 <img src="/docs/images/RDD.png"> 
 <div>Media <a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">RDD</a> for DeepSignal Batch</div>
