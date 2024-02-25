@@ -68,11 +68,11 @@ val sc = new SparkContext(...)
 val audioRDD: MediaRDD = sc.mediaFile("path_to_audio_files")
 val transcription = audioRDD.collectTranscription()
 
-//
+// collect object from video files
 val videoRDD: MediaRDD = sc.mediaFile("path_to_video_files")
 val activity = videoRDD.collectObjects()
 ```
-[TBD]()
+[TBD]() - Add more examples, (streaming ?)
 
 
 
