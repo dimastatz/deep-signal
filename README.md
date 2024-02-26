@@ -70,7 +70,7 @@ val transcription = audioRDD.collectTranscription()
 
 // collect object from video files
 val videoRDD: MediaRDD = sc.mediaFile("path_to_video_files")
-val activity = videoRDD.collectObjects()
+val objects = videoRDD.collectObjects()
 ```
 [TBD]() - Add more examples, (streaming ?)
 
