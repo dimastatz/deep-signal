@@ -22,9 +22,9 @@ elif [ $1 = "-local" ]; then
     pip install --upgrade pip
     pip install -r ./requirements.txt
 
-    black linga tests
-    pylint --fail-under=9.9 linga tests
-    pytest --cov-fail-under=95 --cov linga -v tests
+    black deep-signal tests
+    pylint --fail-under=9.9 deep-signal tests
+    pytest --cov-fail-under=95 --cov deep-signal -v tests
 
 elif [ $1 = "-test" ]; then
     trap 'abort' 0
@@ -32,19 +32,19 @@ elif [ $1 = "-test" ]; then
     
     echo "Running format, linter and tests"
     source .venv/bin/activate
-    black linga tests
-    pylint --fail-under=9.9 linga tests
-    pytest --cov-fail-under=95 --cov --log-cli-level=INFO linga -v tests
+    black deep-signal tests
+    pylint --fail-under=9.9 deep-signal tests
+    pytest --cov-fail-under=95 --cov --log-cli-level=INFO deep-signal -v tests
 
 elif [ $1 = "-docker" ]; then
     echo "Building and running docker image"
-    docker stop linga-container
-    docker rm linga-container
-    docker rmi linga-image
+    docker stop deep-signal-container
+    docker rm deep-signal-container
+    docker rmi deep-signal-image
     # build docker and run
-    docker build --tag linga-image --build-arg CACHEBUST=$(date +%s) .
-    docker run --name linga-container -p 8888:8888 -d linga-image
-    
+    docker build --tag deep-signal-image --build-arg CACHEBUST=$(date +%s) .
+    docker run --name deep-signal-container -p 8888:8888 -d deep-signal-image
+
 else
   echo "Wrong argument is provided. Usage:
     1. '-local' to build local environment
