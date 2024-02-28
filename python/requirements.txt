@@ -1,0 +1,15 @@
+flask==3.0.0
+pytest==7.3.2
+black==23.3.0
+Pillow==10.1.0
+pylint==2.17.4
+librosa==0.10.1
+requests==2.31.0
+pvrecorder==1.2.1
+pytest-cov==4.1.0
+streamlit==1.28.2
+langchain==0.0.335
+Flask-SocketIO==5.3.6
+faster-whisper==0.10.0
+openai-whisper==20231117
+pylint-fail-under==0.3.0
