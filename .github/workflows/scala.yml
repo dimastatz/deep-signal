@@ -27,6 +27,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: 'sbt'
-    - name: Run tests
+    - name: Scala Test
       run: ./setup.sh
-     
+    - name: Python Test
+      run: ./python/setup.sh -local
+  
