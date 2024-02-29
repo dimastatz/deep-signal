@@ -22,9 +22,9 @@ elif [ $1 = "-local" ]; then
     pip install --upgrade pip
     pip install -r ./requirements.txt
 
-    black deep-signal tests
-    pylint --fail-under=9.9 deep-signal tests
-    pytest --cov-fail-under=95 --cov deep-signal -v tests
+    black deepsignal tests
+    pylint --fail-under=9.9 deepsignal tests
+    pytest --cov-fail-under=95 --cov deepsignal -v tests
 
 elif [ $1 = "-test" ]; then
     trap 'abort' 0
@@ -32,9 +32,9 @@ elif [ $1 = "-test" ]; then
     
     echo "Running format, linter and tests"
     source .venv/bin/activate
-    black deep-signal tests
-    pylint --fail-under=9.9 deep-signal tests
-    pytest --cov-fail-under=95 --cov --log-cli-level=INFO deep-signal -v tests
+    black deepsignal tests
+    pylint --fail-under=9.9 deepsignal tests
+    pytest --cov-fail-under=95 --cov deepsignal -v tests
 
 elif [ $1 = "-docker" ]; then
     echo "Building and running docker image"
