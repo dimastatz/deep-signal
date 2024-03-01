@@ -9,4 +9,6 @@ def get_transcriber():
 
     def transcribe(buffer: np.ndarray) -> str:
         """run transcription"""
-        return model.transcribe()
+        return model.transcribe(buffer)
+
+    return transcribe
