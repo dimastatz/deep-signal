@@ -14,3 +14,4 @@ Flask-SocketIO==5.3.6
 faster-whisper==0.10.0
 openai-whisper==20231117
 pylint-fail-under==0.3.0
+pytest-flask-socketio==
