@@ -1,8 +1,5 @@
 """ streaming """
 import pytest
-from flask import Flask
-from flask_socketio import SocketIO, emit
-
 from deepsignal import app, socketio
 from deepsignal.streaming import server
 
