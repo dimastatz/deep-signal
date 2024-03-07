@@ -49,7 +49,7 @@ MediaDStream is an extension of Apache Spark's DStream designed for handling med
 - Visual Content: Extracting visual elements such as objects, scenes, and people present in the video frames.
 - Motion Analysis: Analyzing motion patterns, trajectories, and velocities of objects or individuals within the video.
 - Activity Recognition: Detecting and categorizing different activities or events occurring in the video, such as walking, running, or gesturing.
-- Facial Recognition: Identifying and recognizing faces of individuals appearing in the video, which can be useful for tasks like identity verification or surveillance.
+- Facial Recognition: Identifying and recognizing faces of individuals appearing in the video can be useful for tasks like identity verification or surveillance.
 - Object Tracking: Tracking the movement of specific objects or individuals across multiple frames of the video.
 - Emotion Detection: Analyzing facial expressions and body language to infer the emotional states of individuals in the video.
 - Scene Understanding: Understanding the context and content of different scenes within the video, such as indoor or outdoor environments, day or night scenes, etc.
@@ -61,7 +61,7 @@ MediaDStream is an extension of Apache Spark's DStream designed for handling med
 
 # How-To
 ```scala
-// create Spark Context
+// Create Spark Context
 val sc = new SparkContext(...)
 
 // transcribe audio files
