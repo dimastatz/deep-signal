@@ -1,5 +1,5 @@
 """ main entry point """
-from flask import Flask, render_template
+from flask import Flask
 from flask_socketio import SocketIO
 
 
@@ -11,7 +11,7 @@ socketio = SocketIO(app)
 @app.route("/")
 def index():
     """default web page"""
-    return render_template("index.html")
+    return "WS Server"
 
 
 @socketio.on("connect")
