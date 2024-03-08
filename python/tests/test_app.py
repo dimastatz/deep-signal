@@ -19,3 +19,4 @@ def test_index(test_flask_client):
     """test index page"""
     res = test_flask_client.get("/")
     assert res.status_code == 200
+    assert res.get_data() == b"WS Server"
