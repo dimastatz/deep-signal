@@ -1,4 +1,6 @@
 """ streaming """
+import logging as log
+
 import pytest
 from deepsignal import app as flask_app
 
@@ -19,4 +21,7 @@ def test_index(test_flask_client):
     """test index page"""
     res = test_flask_client.get("/")
     assert res.status_code == 200
-    assert res.get_data() == b"WS Server"
+
+    text = str(res.get_data(), encoding="utf-8")
+    log.info("server index %s", text)
+    assert text == "WS Server"
