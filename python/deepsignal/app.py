@@ -17,7 +17,7 @@ def index():
 @socketio.on("connect")
 def handle_connect():
     """handle connect"""
-    print("Client connected")
+    socketio.send("connected")
 
 
 # Define the WebSocket event handler
