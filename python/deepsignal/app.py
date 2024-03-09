@@ -28,6 +28,6 @@ def handle_message(message):
     socketio.send(message)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     # Start the Flask application with Socket.IO support
     socketio.run(app, debug=True)
