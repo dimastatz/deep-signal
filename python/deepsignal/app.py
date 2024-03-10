@@ -18,7 +18,7 @@ def index():
 def handle_connect():
     """handle connect"""
     app.logger.info("connected")
-    socketio.send("connected")
+    socketio.emit("response", {"data": "connected"})
 
 
 # Define the WebSocket event handler
@@ -26,7 +26,7 @@ def handle_connect():
 def handle_message(message):
     """handle message"""
     app.logger.info("echo")
-    socketio.send(message)
+    socketio.emit("response", {"data": message})
 
 
 if __name__ == "__main__":  # pragma: no cover

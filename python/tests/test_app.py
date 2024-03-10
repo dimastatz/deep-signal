@@ -30,5 +30,11 @@ def test_index(test_flask_client, test_socketio):
     assert res.get_data() == b"WS Server"
     assert test_socketio.is_connected()
 
-    test_socketio.send("test message")
-    assert test_socketio.get_received()
+    test_socketio.send("test message 1")
+    result = test_socketio.get_received()
+    assert result[0]["args"][0]["data"] == "connected"
+    assert result[1]["args"][0]["data"] == "test message 1"
+
+    test_socketio.send("test message 2")
+    result = test_socketio.get_received()
+    assert result[0]["args"][0]["data"] == "test message 2"
