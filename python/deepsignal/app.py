@@ -7,7 +7,6 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 
 
-# Define a route to serve the HTML file
 @app.route("/")
 def index():
     """default web page"""
@@ -31,5 +30,5 @@ def handle_message(message):
 
 
 if __name__ == "__main__":  # pragma: no cover
-    # Start the Flask application with Socket.IO support
+    # Start the Flask with Socket.IO
     socketio.run(app, debug=True)
