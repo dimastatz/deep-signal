@@ -11,12 +11,14 @@ socketio = SocketIO(app)
 @app.route("/")
 def index():
     """default web page"""
+    app.logger.info("index")
     return "WS Server"
 
 
 @socketio.on("connect")
 def handle_connect():
     """handle connect"""
+    app.logger.info("connected")
     socketio.send("connected")
 
 
@@ -24,7 +26,7 @@ def handle_connect():
 @socketio.on("message")
 def handle_message(message):
     """handle message"""
-    # Echo the message back to all connected clients
+    app.logger.info("echo")
     socketio.send(message)
 
 
