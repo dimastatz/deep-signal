@@ -1,5 +1,7 @@
 """ streaming """
+import os
 import pytest
+import librosa
 from deepsignal import app as flask_app
 
 
@@ -38,3 +40,13 @@ def test_index(test_flask_client, test_socketio):
     test_socketio.send("test message 2")
     result = test_socketio.get_received()
     assert result[0]["args"][0]["data"] == "test message 2"
+
+
+def test_audio_stream(test_socketio):
+    """test audio stream"""
+    result = test_socketio.get_received()
+    assert len(result) == 1
+
+    path = os.getcwd() + "/tests/resources/sample-4.mp3"
+    buffer, _ = librosa.load(path)
+    assert len(buffer) > 0

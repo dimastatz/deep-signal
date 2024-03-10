@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
-        "deepsignal"
+        "deepsignal",
+        "librosa"
     ],
     "python.testing.pytestArgs": [
         "."
