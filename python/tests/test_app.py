@@ -48,5 +48,6 @@ def test_audio_stream(test_socketio):
     assert len(result) == 1
 
     path = os.getcwd() + "/tests/resources/sample-4.mp3"
-    buffer, _ = librosa.load(path)
-    assert len(buffer) > 0
+    buffer, sample_rate = librosa.load(path)
+    duration = librosa.get_duration(y=buffer, sr=sample_rate)
+    assert len(buffer) > 0 and duration > 0 
