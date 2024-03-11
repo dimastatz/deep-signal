@@ -1,5 +1,6 @@
 """ streaming """
 import os
+import numpy
 import pytest
 import librosa
 from deepsignal import app as flask_app
@@ -49,5 +50,19 @@ def test_audio_stream(test_socketio):
 
     path = os.getcwd() + "/tests/resources/sample-4.mp3"
     buffer, sample_rate = librosa.load(path)
-    duration = librosa.get_duration(y=buffer, sr=sample_rate)
-    assert len(buffer) > 0 and duration > 0 
+    duration = int(librosa.get_duration(y=buffer, sr=sample_rate))
+    assert len(buffer) > 0 and duration > 0
+
+    length = int(len(buffer) / duration)
+
+    while len(buffer) > 0:
+        chunk = buffer[0: length]
+        chunk_in = numpy.array2string(chunk)
+
+        buffer = buffer[length:]
+        test_socketio.send(chunk_in)
+        result = test_socketio.get_received()
+    
+        chunk_out = result[0]["args"][0]["data"]
+        assert chunk_out == chunk_in
+
