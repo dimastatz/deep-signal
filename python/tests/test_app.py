@@ -57,6 +57,7 @@ def test_audio_stream(test_socketio):
 
     while len(buffer) > 0:
         chunk = buffer[0: length]
+        
         chunk_in = numpy.array2string(chunk)
 
         buffer = buffer[length:]
