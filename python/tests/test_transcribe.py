@@ -18,7 +18,6 @@ def test_whisper_transcribe():
     path = os.getcwd() + "/tests/resources/sample-4.mp3"
     buffer, _ = lr.load(path)
     result = transcriber(buffer)
-    print(1, result["text"])
-    print(2, expected)
-
+    print(result["text"], expected)
+    
     assert df.SequenceMatcher(None, expected, result["text"]).ratio() > 0.9
