@@ -19,5 +19,5 @@ def test_whisper_transcribe():
     buffer, _ = lr.load(path)
     result = transcriber(buffer)
     print(result["text"], expected)
-    
+
     assert df.SequenceMatcher(None, expected, result["text"]).ratio() > 0.9

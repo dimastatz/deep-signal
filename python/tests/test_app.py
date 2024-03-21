@@ -56,14 +56,13 @@ def test_audio_stream(test_socketio):
     length = int(len(buffer) / duration)
 
     while len(buffer) > 0:
-        chunk = buffer[0: length]
-        
+        chunk = buffer[0:length]
+
         chunk_in = numpy.array2string(chunk)
 
         buffer = buffer[length:]
         test_socketio.send(chunk_in)
         result = test_socketio.get_received()
-    
+
         chunk_out = result[0]["args"][0]["data"]
         assert chunk_out == chunk_in
-
