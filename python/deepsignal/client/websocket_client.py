@@ -5,8 +5,8 @@ import websockets
 
 
 async def start_transcription():
-    server = "einstein-transcribe.sfproxy.einsteintest1.test1-uswest2.aws.sfdc.cl"
-    url = f"wss://{server}/transcribe/v1/tenant/stream?engine=aws"
+    server = "todo:server url"
+    url = f"wss://{server}/transcribe/v1/tenant/stream?engine=x"
     async with websockets.connect(url) as websocket:
         await asyncio.gather(capture_audio(websocket), receive_transcription(websocket))
 
