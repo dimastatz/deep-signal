@@ -1,10 +1,13 @@
 """ main entry point """
+import numpy as np
 from flask import Flask
 from flask_socketio import SocketIO
+from deepsignal.transcription.whisper_wrapper import get_transcriber
 
 
 app = Flask(__name__)
 socketio = SocketIO(app)
+transcriber = get_transcriber()
 
 
 @app.route("/")
@@ -26,7 +29,14 @@ def handle_connect():
 def handle_message(message):
     """handle message"""
     app.logger.info("echo")
-    socketio.emit("response", {"data": message})
+
+    if isinstance(message, str):
+        text = message
+    else:
+        buffer = np.frombuffer(message)
+        text = transcriber(buffer)
+
+    socketio.emit("response", {"data": text})
 
 
 if __name__ == "__main__":  # pragma: no cover

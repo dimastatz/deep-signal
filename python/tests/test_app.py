@@ -1,9 +1,9 @@
 """ streaming """
 import os
-import numpy
 import pytest
 import librosa
 from deepsignal import app as flask_app
+import deepsignal.transcription.whisper_wrapper as whisper
 
 
 @pytest.fixture(name="test_flask_app")
@@ -48,18 +48,24 @@ def test_audio_stream(test_socketio):
     result = test_socketio.get_received()
     assert len(result) == 1
 
+    transcriber = whisper.get_transcriber()
     path = os.getcwd() + "/tests/resources/sample-4.mp3"
     buffer, sample_rate = librosa.load(path)
     duration = int(librosa.get_duration(y=buffer, sr=sample_rate))
     assert len(buffer) > 0 and duration > 0
+
+    text = transcriber(buffer)
+    assert len(text) > 0
 
     length = int(len(buffer) / duration)
 
     while len(buffer) > 0:
         chunk = buffer[0:length]
 
-        chunk_in = chunk.tostring()
+        text = transcriber(chunk)
+        assert len(text) > 0
 
+        chunk_in = chunk.tobytes(order='C')
         buffer = buffer[length:]
         test_socketio.send(chunk_in)
         result = test_socketio.get_received()
