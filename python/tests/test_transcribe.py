@@ -25,27 +25,19 @@ def test_whisper_transcribe():
     assert df.SequenceMatcher(None, expected, result["text"]).ratio() > 0.9
 
 
-    def test_whisper_transcribe_chunks():
-        """test whisper in memory processing for streaming"""
-        path = os.getcwd() + "/tests/resources/harvard.wav"
+def test_whisper_transcribe_chunks():
+    """test whisper in memory processing for streaming"""
+    path = os.getcwd() + "/tests/resources/harvard.wav"
 
-        transcriber = whisper.get_transcriber()
-        
-        with open(path, "rb") as wav:
-            while True:
-                chunk = wav.read(4096)  
-                if not chunk:
-                    break
-                else:
-                    rate, data = wav.read(io.BytesIO(chunk))
-                    print(rate)
-                    text = transcriber(data)
-                    assert len(text) > 0
+    transcriber = whisper.get_transcriber()
 
-    
+    with open(path, "rb") as wav:
+        while True:
+            chunk = wav.read(4096)
+            if not chunk:
+                break
 
-        
-        
-
-        
-
+            rate, data = wv.read(io.BytesIO(chunk))
+            print(rate)
+            text = transcriber(data)
+            assert len(text) > 0
