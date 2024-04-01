@@ -32,12 +32,8 @@ def test_whisper_transcribe_chunks():
     transcriber = whisper.get_transcriber()
 
     with open(path, "rb") as wav:
-        while True:
-            chunk = wav.read(4096)
-            if not chunk:
-                break
+        chunk = wav.read()
+        rate, data = wv.read(io.BytesIO(chunk))
+        text = transcriber(data)
 
-            rate, data = wv.read(io.BytesIO(chunk))
-            print(rate)
-            text = transcriber(data)
-            assert len(text) > 0
+        assert rate > 0 and len(text) > 0
