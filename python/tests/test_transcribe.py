@@ -29,10 +29,13 @@ def test_whisper_transcribe_chunks():
     """test whisper in memory processing for streaming"""
     path = os.getcwd() + "/tests/resources/harvard.wav"
 
-    # transcriber = whisper.get_transcriber()
+    transcriber = whisper.get_transcriber()
 
     with open(path, "rb") as wav:
         content = wav.read()
-        rate, _ = wv.read(io.BytesIO(content))
+        rate, buffer = wv.read(io.BytesIO(content))
 
+        text = transcriber(buffer)
+        print(text)
+        
         assert rate > 0
