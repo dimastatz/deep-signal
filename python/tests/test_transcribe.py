@@ -1,6 +1,7 @@
 """ test transcriptions """
 import os
-import io
+import time
+import logging
 import difflib as df
 import librosa as lr
 import scipy.io.wavfile as wv
@@ -30,12 +31,13 @@ def test_whisper_transcribe_chunks():
     path = os.getcwd() + "/tests/resources/harvard.wav"
 
     transcriber = whisper.get_transcriber()
+    buffer, rate = lr.load(path)
+    assert rate > 0
 
-    with open(path, "rb") as wav:
-        content = wav.read()
-        rate, buffer = wv.read(io.BytesIO(content))
+    while len(buffer) > 0:
+        chunk = buffer[0:4096]
+        buffer = buffer[4096:]
+        start = time.time()
+        result = transcriber(chunk)
+        logging.info("time: %s, result: %s", time.time() - start, result)
 
-        text = transcriber(buffer)
-        print(text)
-        
-        assert rate > 0
