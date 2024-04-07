@@ -1,4 +1,5 @@
 import time
+import pyaudio
 import multiprocessing as mp
 
 
@@ -20,5 +21,5 @@ if __name__ == "__main__" :
     proc.start()
     capture(con1)
     proc.terminate()
-    
+
     print("done")
