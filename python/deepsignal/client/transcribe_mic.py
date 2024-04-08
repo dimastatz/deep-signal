@@ -9,9 +9,17 @@ def transcribe(con) -> str:
 
 
 def capture(con):
-    print("capture")
-    con1.send("packet")
-    time.sleep(1)
+    chunk, rate, record_sec = 1024, 16000, 5
+    p = pyaudio.PyAudio()
+    stream = p.open(format=pyaudio.paInt16, channels=1, rate=rate, input=True, frames_per_buffer=chunk)
+    print("* recording")
+    for _ in range(0, int(rate / chunk * record_sec)):
+        data = stream.read(chunk)
+        con.send(data)
+    
+    stream.close()
+    p.terminate()
+    print(f"* done recording")
 
 
 if __name__ == "__main__" :
