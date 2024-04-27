@@ -2,7 +2,7 @@
 
 abort()
 {
-    echo "*** FAILED ***" >&2
+    echo "*** FAILED  ***" >&2
     exit 1
 }
 
