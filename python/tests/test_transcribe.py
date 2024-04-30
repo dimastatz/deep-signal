@@ -40,4 +40,3 @@ def test_whisper_transcribe_chunks():
         start = time.time()
         result = transcriber(chunk)
         logging.info("time: %s, result: %s", time.time() - start, result)
-
