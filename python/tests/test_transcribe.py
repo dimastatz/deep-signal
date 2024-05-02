@@ -4,7 +4,6 @@ import time
 import logging
 import difflib as df
 import librosa as lr
-import scipy.io.wavfile as wv
 import deepsignal.transcription.whisper_wrapper as whisper
 
 

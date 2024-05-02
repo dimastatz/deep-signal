@@ -20,12 +20,18 @@ def run_client(con: Connection, fname: str):
     pass
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     con1, con2 = Pipe()
     model = whisper.load_model("base")
 
-    proc = Process(target=run_server, args=(con2,model,),)
-   
+    proc = Process(
+        target=run_server,
+        args=(
+            con2,
+            model,
+        ),
+    )
+
     proc.start()
     run_client(con1, "")
     time.sleep(1)
