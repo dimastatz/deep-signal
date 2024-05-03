@@ -17,17 +17,17 @@ def run_server(con: Connection, model: whisper.Whisper):
 
 
 def run_client(con: Connection, fname: str):
-    print(f"{time.time()}: Client")
-    pass
+    with wave.open('sine.wav', 'r') as wavfile:
+        params = wavfile.getparams()
+        print(f"WavFile {params.sampwidth}, {params.nchannels}, {params.sampwidth}")
 
 
 if __name__ == "__main__":
     con1, con2 = Pipe()
     model = whisper.load_model("base")
-    path = Path(__file__).parent.absolute()
+    path = Path(__file__).parent.absolute().absolute + "/audio/harvard.wav"
     
     print(path)
-
 
     proc = Process(
         target=run_server,
