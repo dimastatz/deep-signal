@@ -17,7 +17,7 @@ def run_server(con: Connection, model: whisper.Whisper):
 
 
 def run_client(con: Connection, fname: str):
-    with wave.open(fname, 'r') as wavfile:
+    with wave.open(fname, "r") as wavfile:
         params = wavfile.getparams()
         print(f"WavFile {params.sampwidth}, {params.nchannels}, {params.framerate}")
 
