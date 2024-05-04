@@ -3,6 +3,8 @@ import time
 from queue import Queue
 from typing import Callable
 from threading import Thread
+
+import numpy as np
 from whisper import Whisper
 
 
@@ -41,7 +43,11 @@ class Transcriber:
             if not self.window:
                 time.sleep(0.1)
             else:
-                buffer = self.to_numpy(self.window)
-                result = self.model.transcribe(buffer, language="en")
+                buffer = b"".join(self.window)
+                arr = (
+                    np.frombuffer(buffer, np.int16).flatten().astype(np.float32)
+                    / 32768.0
+                )
+                result = self.model.transcribe(arr, language="en")
                 segment_closed = result == self.result
                 self.callback(result, segment_closed)
