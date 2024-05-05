@@ -1,55 +1,75 @@
 """ Implements Transcriber Worker for RT cases"""
 import time
-from queue import Queue
-from typing import Callable
-from threading import Thread
+import json
+from multiprocessing import Pipe, Process
+from multiprocessing.connection import Connection
 
+import whisper
 import numpy as np
-from whisper import Whisper
+
+
+def transcribe(model: whisper.Whisper, chunks: list) -> dict:
+    """transcribes given byte array"""
+    buffer = b"".join(chunks)
+    arr = np.frombuffer(buffer, np.int16).flatten().astype(np.float32) / 32768.0
+    return model.transcribe(arr)
+
+
+def transcribe_worker(conn: Connection, model: whisper.Whisper):
+    """stream processing implementation"""
+    chunks = []
+    print(model.num_languages)
+
+    while True:
+        if conn.poll():
+            chunk = conn.recv()
+            if chunk == b"":
+                if len(chunks) > 0:
+                    result = transcribe(model, chunks)
+                conn.send("finsihed")
+                break
+
+            chunks.append(chunk)
+        else:
+            if len(chunks) > 0:
+                conn.send(str(len(chunks)))
+                chunks.clear()
+            else:
+                time.sleep(0.1)
 
 
 class Transcriber:
-    """Implements Transcriber Worker for RT cases"""
+    """Stream State Manager"""
 
-    def __init__(
-        self, model: Whisper, result_ready: Callable[[str, bool], None], max_size=1000
-    ) -> None:
-        """ctor"""
-        self.model = model
-        self.queue = Queue[bytes](max_size)
-        self.worker = Thread(target=self._transcribe_loop)
-        self.window = []
-        self.result: str = None
-        self.result_ready = result_ready
-        # start worker
-        self.started = True
-        self.worker.start()
+    def __init__(self, model_name="base") -> None:
+        self.conn = Pipe()
+        self.model = whisper.load_model(model_name)
+        self.worker = Process(
+            target=transcribe_worker,
+            args=(
+                self.conn[1],
+                self.model,
+            ),
+        )
 
-    def add_chunk(self, chunk: bytes) -> None:
-        """add new audio chunk"""
-        self.queue.put(chunk)
+    def send(self, chunk: bytes) -> None:
+        """Send audio chunk"""
+        self.conn[0].send(chunk)
 
-    def stop(self) -> None:
-        """stop transcription loop"""
-        self.started = False
-        self.worker.join(3)
+    def start(self) -> None:
+        """Start streaming worker"""
+        if not self.worker.is_alive():
+            self.worker.start()
 
-    def _transcribe_loop(self):
-        """background transcription job"""
-        while self.started:
-            while not self.queue.empty():
-                self.window.append(self.queue.get_nowait())
+    def stop(self, timeout=3) -> None:
+        """Stop streaming worker"""
+        if self.worker.is_alive():
+            self.send(b"")
+        self.worker.join(timeout)
 
-            if not self.window:
-                time.sleep(0.1)
-            else:
-                buffer = b"".join(self.window)
-                arr = (
-                    np.frombuffer(buffer, np.int16).flatten().astype(np.float32)
-                    / 32768.0
-                )
-                result = self.model.transcribe(arr, language="en")
-                segment_closed = result == self.result
-                self.result_ready(result, segment_closed)
-                if segment_closed:
-                    self.window.clear()
+    def get_result(self) -> str:
+        """Read all results produced"""
+        result = []
+        while self.conn[0].poll():
+            result.append(self.conn[0].recv())
+        return "\n".join(result)
