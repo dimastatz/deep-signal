@@ -32,6 +32,7 @@ class Transcriber:
     def stop(self) -> None:
         """stop transcription loop"""
         self.started = False
+        self.worker.join(3)
 
     def _transcribe_loop(self):
         """background transcription job"""

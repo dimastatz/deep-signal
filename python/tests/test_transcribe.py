@@ -1,10 +1,11 @@
 """ test transcriptions """
 import os
 import time
-import logging
 import difflib as df
+import whisper
 import librosa as lr
-import deepsignal.transcription.whisper_wrapper as whisper
+import deepsignal.transcription.transcriber as ts
+import deepsignal.transcription.whisper_wrapper as ww
 
 
 def test_whisper_transcribe():
@@ -14,7 +15,7 @@ def test_whisper_transcribe():
         + " What as-be said Sarah, as to Lady for better, very stob."
     )
 
-    transcriber = whisper.get_transcriber()
+    transcriber = ww.get_transcriber()
     assert not transcriber is None
 
     path = os.getcwd() + "/tests/resources/sample-4.mp3"
@@ -25,17 +26,25 @@ def test_whisper_transcribe():
     assert df.SequenceMatcher(None, expected, result["text"]).ratio() > 0.9
 
 
-def test_whisper_transcribe_chunks():
+def test_whisper_transcribe_stream():
     """test whisper in memory processing for streaming"""
     path = os.getcwd() + "/tests/resources/harvard.wav"
 
-    transcriber = whisper.get_transcriber()
+    transcriber = ww.get_transcriber()
     buffer, rate = lr.load(path)
     assert rate > 0
+    text = transcriber(buffer)
+    assert len(text) > 0
 
-    while len(buffer) > 0:
-        chunk = buffer[0:4096]
+    def result_ready(text: str, is_partial: bool):
+        print(text, is_partial)
+
+    model = whisper.load_model("base")
+    transcriber = ts.Transcriber(model, result_ready)
+    while buffer.any():
+        chunk = buffer[:4096]
         buffer = buffer[4096:]
-        start = time.time()
-        result = transcriber(chunk)
-        logging.info("time: %s, result: %s", time.time() - start, result)
+        transcriber.add_chunk(chunk)
+        time.sleep(0.1)
+
+    transcriber.stop()
