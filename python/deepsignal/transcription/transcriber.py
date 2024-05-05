@@ -12,7 +12,7 @@ class Transcriber:
     """Implements Transcriber Worker for RT cases"""
 
     def __init__(
-        self, model: Whisper, callback: Callable[[str, bool], None], max_size=1000
+        self, model: Whisper, result_ready: Callable[[str, bool], None], max_size=1000
     ) -> None:
         """ctor"""
         self.model = model
@@ -20,11 +20,10 @@ class Transcriber:
         self.worker = Thread(target=self._transcribe_loop)
         self.window = []
         self.result: str = None
-        self.callback = callback
-
+        self.result_ready = result_ready
         # start worker
-        self.worker.start()
         self.started = True
+        self.worker.start()
 
     def add_chunk(self, chunk: bytes) -> None:
         """add new audio chunk"""
@@ -37,7 +36,7 @@ class Transcriber:
     def _transcribe_loop(self):
         """background transcription job"""
         while self.started:
-            while self.queue.not_empty:
+            while not self.queue.empty():
                 self.window.append(self.queue.get_nowait())
 
             if not self.window:
@@ -50,4 +49,6 @@ class Transcriber:
                 )
                 result = self.model.transcribe(arr, language="en")
                 segment_closed = result == self.result
-                self.callback(result, segment_closed)
+                self.result_ready(result, segment_closed)
+                if segment_closed:
+                    self.window.clear()
