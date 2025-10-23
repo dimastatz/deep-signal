@@ -1,6 +1,17 @@
-# 🎧 AudioSignals — Python Library for Audio-Based Conversation Analysis
+<div align="center">
+<h1 align="center"> DeepSignal </h1> 
+<h3>An Open-Source Framework for Multimedia Processing on Apache Spark</br></h3>
+<img src="https://img.shields.io/badge/Progress-1%25-red"> <img src="https://img.shields.io/badge/Feedback-Welcome-green">
+</br>
+</br>
+<kbd>
+<img src="/docs/images/deep-signal.png" width="256px"> 
+</kbd>
+</div>
 
-**AudioSignals** is a Python library designed to extract rich analytical signals directly from audio files — without relying on transcripts or text analysis. It focuses purely on acoustic and prosodic features to help researchers, developers, and data scientists understand conversational dynamics, emotional tone, and speaking patterns.
+# 🎧 DeepSignal — Python Library for Audio-Based Conversation Analysis
+
+**DeepSignal** is a Python library designed to extract rich analytical signals directly from audio files — without relying on transcripts or text analysis. It focuses purely on acoustic and prosodic features to help researchers, developers, and data scientists understand conversational dynamics, emotional tone, and speaking patterns.
 
 ---
 
